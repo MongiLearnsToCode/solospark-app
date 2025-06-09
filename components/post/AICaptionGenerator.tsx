@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { Badge } from '../ui/badge';
+import { Alert, AlertDescription } from '../ui/alert';
 
 interface AICaptionGeneratorProps {
   onSelectCaption: (caption: string) => void;
@@ -51,131 +56,159 @@ const AICaptionGenerator: React.FC<AICaptionGeneratorProps> = ({ onSelectCaption
   const handleSelectCaption = (caption: string) => {
     onSelectCaption(caption);
     setIsOpen(false);
+    setCaptions([]);
   };
 
   if (!isOpen) {
     return (
-      <button
+      <Button
         type="button"
+        variant="accent"
+        size="sm"
         onClick={() => setIsOpen(true)}
-        className="flex items-center text-blue-500 hover:text-blue-400 text-sm mb-2"
+        className="mb-2"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
-        Generate AI Caption
-      </button>
+        ✨ Generate AI Caption
+      </Button>
     );
   }
 
   return (
-    <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 mb-4">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-medium text-white">AI Caption Generator</h3>
-        <button
-          type="button"
-          onClick={() => setIsOpen(false)}
-          className="text-gray-400 hover:text-white"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-          </svg>
-        </button>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-        <div>
-          <label htmlFor="topic" className="block text-gray-300 mb-1 text-sm">
-            Topic
-          </label>
-          <input
-            id="topic"
-            type="text"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            placeholder="e.g., productivity tips"
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="keywords" className="block text-gray-300 mb-1 text-sm">
-            Keywords (comma separated)
-          </label>
-          <input
-            id="keywords"
-            type="text"
-            value={keywords}
-            onChange={(e) => setKeywords(e.target.value)}
-            placeholder="e.g., success, goals, planning"
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-        
-        <div>
-          <label htmlFor="tone" className="block text-gray-300 mb-1 text-sm">
-            Tone
-          </label>
-          <select
-            id="tone"
-            value={tone}
-            onChange={(e) => setTone(e.target.value as any)}
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    <Card className="mb-4 border-indigo/20 bg-gradient-to-br from-indigo/5 to-sky-blue/5">
+      <CardHeader className="pb-4">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <CardTitle className="text-lg">AI Caption Generator</CardTitle>
+            <Badge variant="ai">✨ AI-Powered</Badge>
+          </div>
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              setIsOpen(false);
+              setCaptions([]);
+              setError(null);
+            }}
           >
-            <option value="professional">Professional</option>
-            <option value="casual">Casual</option>
-            <option value="humorous">Humorous</option>
-            <option value="inspirational">Inspirational</option>
-          </select>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </Button>
         </div>
-        
-        <div>
-          <label htmlFor="platform" className="block text-gray-300 mb-1 text-sm">
-            Platform
-          </label>
-          <select
-            id="platform"
-            value={platform}
-            onChange={(e) => setPlatform(e.target.value as any)}
-            className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="instagram">Instagram</option>
-            <option value="twitter">Twitter</option>
-            <option value="linkedin">LinkedIn</option>
-          </select>
-        </div>
-      </div>
+      </CardHeader>
       
-      <button
-        type="button"
-        onClick={generateCaptions}
-        disabled={isLoading}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-4"
-      >
-        {isLoading ? 'Generating...' : 'Generate Captions'}
-      </button>
-      
-      {error && (
-        <div className="bg-red-500 bg-opacity-10 border border-red-500 text-red-500 px-4 py-3 rounded mb-4 text-sm">
-          {error}
-        </div>
-      )}
-      
-      {captions.length > 0 && (
-        <div className="space-y-3">
-          <h4 className="text-white font-medium">Suggested Captions:</h4>
-          {captions.map((caption, index) => (
-            <div
-              key={index}
-              className="bg-gray-700 p-3 rounded-lg cursor-pointer hover:bg-gray-600 transition-colors"
-              onClick={() => handleSelectCaption(caption)}
+      <CardContent className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="topic" className="block text-sm font-medium text-slate-gray mb-1">
+              Topic
+            </label>
+            <Input
+              id="topic"
+              type="text"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder="e.g., productivity tips, business growth"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="keywords" className="block text-sm font-medium text-slate-gray mb-1">
+              Keywords (comma separated)
+            </label>
+            <Input
+              id="keywords"
+              type="text"
+              value={keywords}
+              onChange={(e) => setKeywords(e.target.value)}
+              placeholder="e.g., success, goals, planning"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="tone" className="block text-sm font-medium text-slate-gray mb-1">
+              Tone
+            </label>
+            <select
+              id="tone"
+              value={tone}
+              onChange={(e) => setTone(e.target.value as any)}
+              className="form-select w-full"
             >
-              <p className="text-white text-sm">{caption}</p>
-            </div>
-          ))}
+              <option value="professional">Professional</option>
+              <option value="casual">Casual</option>
+              <option value="humorous">Humorous</option>
+              <option value="inspirational">Inspirational</option>
+            </select>
+          </div>
+          
+          <div>
+            <label htmlFor="platform" className="block text-sm font-medium text-slate-gray mb-1">
+              Platform
+            </label>
+            <select
+              id="platform"
+              value={platform}
+              onChange={(e) => setPlatform(e.target.value as any)}
+              className="form-select w-full"
+            >
+              <option value="instagram">Instagram</option>
+              <option value="twitter">X (Twitter)</option>
+              <option value="linkedin">LinkedIn</option>
+            </select>
+          </div>
         </div>
-      )}
-    </div>
+        
+        <Button
+          type="button"
+          onClick={generateCaptions}
+          disabled={isLoading}
+          loading={isLoading}
+          className="w-full"
+          variant="accent"
+        >
+          {isLoading ? 'Generating...' : '✨ Generate Captions'}
+        </Button>
+        
+        {error && (
+          <Alert variant="destructive">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        
+        {captions.length > 0 && (
+          <div className="space-y-3">
+            <h4 className="font-medium text-slate-gray">Suggested Captions:</h4>
+            <div className="space-y-2">
+              {captions.map((caption, index) => (
+                <Card
+                  key={index}
+                  hover
+                  className="cursor-pointer transition-all duration-200 hover:border-sky-blue/50"
+                  onClick={() => handleSelectCaption(caption)}
+                >
+                  <CardContent className="p-4">
+                    <p className="text-sm text-slate-gray leading-relaxed">{caption}</p>
+                    <div className="mt-2 flex justify-between items-center">
+                      <span className="text-xs text-neutral-500">
+                        {caption.length} characters
+                      </span>
+                      <Button size="sm" variant="ghost">
+                        Use This Caption
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 

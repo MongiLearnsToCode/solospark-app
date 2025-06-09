@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-  /* Base body styles */
+  /* Base body styles with mobile-first approach */
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply font-sans text-slate-gray bg-offwhite;
+    @apply font-sans text-slate-gray bg-offwhite antialiased;
     font-size: 14px;
     line-height: 21px;
   }
@@ -17,9 +21,9 @@
     }
   }
   
-  /* Typography */
+  /* Typography hierarchy with responsive sizing */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-poppins font-semibold text-slate-gray;
+    @apply font-heading font-semibold text-slate-gray;
   }
   
   h1 {
@@ -46,42 +50,210 @@
     @apply text-sm font-semibold;
   }
   
-  /* Links */
+  /* Links with Sky Blue color */
   a {
     @apply text-sky-blue hover:underline transition-colors duration-200;
   }
 
-  /* Focus styles for accessibility */
+  /* Enhanced focus styles for accessibility */
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-sky-blue;
+    @apply outline-2 outline-offset-2 outline-sky-blue ring-2 ring-sky-blue/20;
   }
 
-  /* Selection styling */
+  /* Selection styling with brand colors */
   ::selection {
     @apply bg-amber-gold/20 text-slate-gray;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button, input, textarea, select {
+    @apply transition-all duration-200;
   }
 }
 
 @layer components {
-  /* Common button styles */
+  /* Enhanced button system following design specifications */
   .btn {
-    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-primary {
-    @apply btn bg-amber-gold text-white hover:bg-amber-gold/90;
+    @apply btn bg-amber-gold text-white hover:bg-amber-gold/90 hover:scale-105 focus:ring-amber-gold/50 shadow-sm hover:shadow-md;
   }
 
   .btn-secondary {
-    @apply btn bg-sky-blue text-white hover:bg-sky-blue/90;
+    @apply btn bg-sky-blue text-white hover:bg-sky-blue/90 hover:scale-105 focus:ring-sky-blue/50 shadow-sm hover:shadow-md;
   }
 
   .btn-outline {
-    @apply btn border-2 border-slate-gray text-slate-gray hover:bg-slate-gray/10;
+    @apply btn border-2 border-slate-gray text-slate-gray hover:bg-slate-gray/10 hover:scale-105 focus:ring-slate-gray/50;
   }
 
-  /* Container with standard padding */
+  .btn-ghost {
+    @apply btn text-slate-gray hover:bg-slate-gray/10 hover:scale-105 focus:ring-slate-gray/50;
+  }
+
+  /* Card components with glassmorphism option */
+  .card {
+    @apply bg-white rounded-lg shadow-card border border-neutral-200 transition-all duration-200;
+  }
+
+  .card-hover {
+    @apply card hover:shadow-card-hover hover:-translate-y-0.5;
+  }
+
+  .card-glass {
+    @apply bg-white/80 backdrop-blur-glass rounded-lg shadow-glass border border-white/20;
+  }
+
+  /* Form elements with enhanced styling */
+  .form-input {
+    @apply w-full px-3 py-2 border border-neutral-300 rounded-lg bg-white text-slate-gray placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-sky-blue/50 focus:border-sky-blue transition-all duration-200;
+  }
+
+  .form-textarea {
+    @apply form-input resize-y min-h-[100px];
+  }
+
+  .form-select {
+    @apply form-input appearance-none bg-no-repeat bg-right bg-[length:16px_16px] pr-10;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  }
+
+  /* Container with standard padding and responsive behavior */
   .container-padded {
-    @apply container mx-auto px-4 py-8;
+    @apply container mx-auto px-4 py-8 max-w-7xl;
+  }
+
+  /* Navigation styles */
+  .nav-link {
+    @apply px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:scale-105;
+  }
+
+  .nav-link-active {
+    @apply nav-link bg-sky-blue/10 text-sky-blue;
+  }
+
+  .nav-link-inactive {
+    @apply nav-link text-neutral-600 hover:bg-neutral-100 hover:text-slate-gray;
+  }
+
+  /* Alert and notification styles */
+  .alert {
+    @apply px-4 py-3 rounded-lg border animate-fade-in;
+  }
+
+  .alert-success {
+    @apply alert bg-green-50 border-green-200 text-green-800;
+  }
+
+  .alert-error {
+    @apply alert bg-red-50 border-red-200 text-red-800;
+  }
+
+  .alert-warning {
+    @apply alert bg-yellow-50 border-yellow-200 text-yellow-800;
+  }
+
+  .alert-info {
+    @apply alert bg-blue-50 border-blue-200 text-blue-800;
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply badge bg-amber-gold/10 text-amber-gold;
+  }
+
+  .badge-secondary {
+    @apply badge bg-sky-blue/10 text-sky-blue;
+  }
+
+  .badge-accent {
+    @apply badge bg-indigo/10 text-indigo;
+  }
+
+  /* Loading states */
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-neutral-200 border-t-sky-blue;
+  }
+
+  /* Responsive grid system */
+  .grid-responsive {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+
+  /* Accessibility improvements */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+  }
+
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    @apply absolute -top-10 left-6 bg-amber-gold text-white px-4 py-2 rounded-lg z-50 focus:top-6 transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  /* Custom utility classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animation-delay-75 {
+    animation-delay: 75ms;
+  }
+
+  .animation-delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  /* Glassmorphism utilities */
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-glass border border-white/20;
+  }
+
+  /* Hover scale utilities */
+  .hover-scale {
+    @apply hover:scale-105 transition-transform duration-200;
+  }
+
+  .hover-scale-sm {
+    @apply hover:scale-102 transition-transform duration-200;
+  }
+
+  /* Focus ring utilities */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-sky-blue/50 focus:ring-offset-2;
+  }
+
+  .focus-ring-amber {
+    @apply focus:outline-none focus:ring-2 focus:ring-amber-gold/50 focus:ring-offset-2;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

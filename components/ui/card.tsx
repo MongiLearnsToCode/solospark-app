@@ -1,15 +1,19 @@
 import * as React from "react"
-
 import { cn } from "../../lib/utils"
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & {
+    hover?: boolean
+    glass?: boolean
+  }
+>(({ className, hover = false, glass = false, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border border-slate-gray/20 bg-white text-slate-gray shadow-sm",
+      "rounded-lg border border-neutral-200 bg-white text-slate-gray shadow-card transition-all duration-200",
+      hover && "hover:shadow-card-hover hover:-translate-y-0.5 cursor-pointer",
+      glass && "bg-white/80 backdrop-blur-glass border-white/20 shadow-glass",
       className
     )}
     {...props}
@@ -36,7 +40,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-h3 font-heading font-semibold leading-none tracking-tight",
+      "text-h3-mobile md:text-h3 font-heading font-semibold leading-none tracking-tight",
       className
     )}
     {...props}
@@ -50,7 +54,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-slate-gray/80", className)}
+    className={cn("text-sm text-neutral-600", className)}
     {...props}
   />
 ))
