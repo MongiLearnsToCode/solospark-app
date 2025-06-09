@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") // Used for direct connections to Supabase
+}
+
+model Post {
+  id              String    @id @default(uuid())
+  caption         String
+  media           String?   // URL to media file
+  platforms       String[]  // Array of platform names (e.g., ["instagram", "twitter"])
+  scheduledAt     DateTime
+  userId          String    // User ID from Supabase Auth
+  platformSpecific Json?    // Platform-specific data (e.g., hashtags for Instagram)
+  published       Boolean   @default(false) // Whether the post has been published
+  publishedAt     DateTime? // When the post was published
+  publishingStatus Json?    // Detailed publishing status for each platform
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}

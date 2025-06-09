@@ -1,0 +1,124 @@
+/* Custom styles for the calendar component */
+
+/* Drag and drop styling */
+.rbc-addons-dnd .rbc-addons-dnd-resize-ns-anchor {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  cursor: ns-resize;
+}
+
+.rbc-addons-dnd .rbc-addons-dnd-resize-ns-anchor:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.rbc-addons-dnd .rbc-addons-dnd-resize-ns-anchor-top {
+  top: 0;
+}
+
+.rbc-addons-dnd .rbc-addons-dnd-resize-ns-anchor-bottom {
+  bottom: 0;
+}
+
+/* Event styling */
+.rbc-event {
+  background-color: #3b82f6;
+  border-radius: 4px;
+  color: white;
+  padding: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.rbc-event:hover {
+  background-color: #2563eb;
+}
+
+.rbc-event.rbc-selected {
+  background-color: #1d4ed8;
+}
+
+/* Dragging styles */
+.rbc-addons-dnd-dragging {
+  opacity: 0.7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.rbc-addons-dnd-drag-preview {
+  opacity: 0.5;
+  border: 1px dashed #3b82f6;
+}
+
+/* Drop highlight */
+.rbc-addons-dnd-over {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Time slot selection */
+.rbc-time-slot {
+  transition: background-color 0.1s ease;
+}
+
+.rbc-time-slot:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Tooltip styles */
+.rbc-tooltip {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  padding: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+/* Platform indicators */
+.platform-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+}
+
+.platform-instagram {
+  background-color: #E1306C;
+}
+
+.platform-twitter {
+  background-color: #1DA1F2;
+}
+
+.platform-linkedin {
+  background-color: #0077B5;
+}
+
+/* Confirmation dialog */
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1100;
+  width: 400px;
+  max-width: 90vw;
+}
+
+.confirmation-dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+}

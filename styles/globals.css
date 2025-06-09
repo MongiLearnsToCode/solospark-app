@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Base body styles */
+  body {
+    @apply font-sans text-slate-gray bg-offwhite;
+    font-size: 14px;
+    line-height: 21px;
+  }
+  
+  @screen md {
+    body {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins font-semibold text-slate-gray;
+  }
+  
+  h1 {
+    @apply text-h1-mobile md:text-h1;
+  }
+  
+  h2 {
+    @apply text-h2-mobile md:text-h2;
+  }
+  
+  h3 {
+    @apply text-h3-mobile md:text-h3;
+  }
+
+  h4 {
+    @apply text-lg font-semibold;
+  }
+
+  h5 {
+    @apply text-base font-semibold;
+  }
+
+  h6 {
+    @apply text-sm font-semibold;
+  }
+  
+  /* Links */
+  a {
+    @apply text-sky-blue hover:underline transition-colors duration-200;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-sky-blue;
+  }
+
+  /* Selection styling */
+  ::selection {
+    @apply bg-amber-gold/20 text-slate-gray;
+  }
+}
+
+@layer components {
+  /* Common button styles */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-amber-gold text-white hover:bg-amber-gold/90;
+  }
+
+  .btn-secondary {
+    @apply btn bg-sky-blue text-white hover:bg-sky-blue/90;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-slate-gray text-slate-gray hover:bg-slate-gray/10;
+  }
+
+  /* Container with standard padding */
+  .container-padded {
+    @apply container mx-auto px-4 py-8;
+  }
+}

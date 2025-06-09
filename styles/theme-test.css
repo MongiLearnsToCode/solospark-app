@@ -1,0 +1,85 @@
+/* Theme colors */
+.bg-amber-gold { background-color: #F59E0B; }
+.bg-sky-blue { background-color: #0EA5E9; }
+.bg-indigo { background-color: #6366F1; }
+.bg-offwhite { background-color: #F9FAFB; }
+.bg-slate-gray { background-color: #475569; }
+
+.text-amber-gold { color: #F59E0B; }
+.text-sky-blue { color: #0EA5E9; }
+.text-indigo { color: #6366F1; }
+.text-offwhite { color: #F9FAFB; }
+.text-slate-gray { color: #475569; }
+
+/* Font families */
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Font sizes */
+.text-h1 {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.text-h1-mobile {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.text-h2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.text-h2-mobile {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.text-h3 {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.text-h3-mobile {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.text-base {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.text-base-mobile {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+/* Responsive utilities */
+@media (min-width: 768px) {
+  .md\:text-h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  
+  .md\:text-h2 {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  
+  .md\:text-h3 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+  
+  .md\:text-base {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
