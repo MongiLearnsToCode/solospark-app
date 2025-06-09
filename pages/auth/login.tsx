@@ -75,7 +75,7 @@ const Login: NextPage = () => {
           </CardHeader>
           <CardContent>
             {error && (
-              <Alert variant="destructive" className="mb-6">
+              <Alert variant="destructive\" className="mb-6">
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}

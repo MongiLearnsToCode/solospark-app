@@ -113,7 +113,7 @@ const PostEditor: React.FC = () => {
         <CardContent>
           {/* Error Alert */}
           {createPost.error && (
-            <Alert variant="destructive" className="mb-6">
+            <Alert variant="destructive\" className="mb-6">
               <AlertDescription>
                 {createPost.error.message || 'An error occurred while scheduling the post'}
               </AlertDescription>
